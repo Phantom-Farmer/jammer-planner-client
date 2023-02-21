@@ -6,21 +6,30 @@ import { registerUser } from '../utils/auth'; // Update with path to registerUse
 
 function RegisterForm({ user, updateUser }) {
   const [formData, setFormData] = useState({
-    bio: '',
+    name: '',
     uid: user.uid,
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    registerUser(formData).then(() => updateUser(user.uid));
+    registerUser(formData, user).then(() => updateUser(user.uid));
+  };
+
+  const handleChange = (e) => {
+    // eslint-disable-next-line no-unused-vars
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      name: [value],
+    }));
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Gamer Bio</Form.Label>
-        <Form.Control as="textarea" name="bio" required placeholder="Enter your Bio" onChange={({ target }) => setFormData((prev) => ({ ...prev, [target.name]: target.value }))} />
-        <Form.Text className="text-muted">Let other gamers know a little bit about you...</Form.Text>
+    <Form onSubmit={handleSubmit} style={{ padding: 80 }}>
+      <Form.Group className="mb-3">
+        <Form.Label>Name</Form.Label>
+        <Form.Control as="textarea" required placeholder="Enter your Name" name="name" onChange={handleChange} />
+        <Form.Text className="text-muted">Welcome to Jammer Planner</Form.Text>
       </Form.Group>
       <Button variant="primary" type="submit">
         Submit
