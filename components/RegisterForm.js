@@ -8,6 +8,8 @@ function RegisterForm({ user, updateUser }) {
   const [formData, setFormData] = useState({
     name: '',
     uid: user.uid,
+    image_url: '',
+    email: '',
   });
 
   const handleSubmit = (e) => {
@@ -23,7 +25,7 @@ function RegisterForm({ user, updateUser }) {
       name: [value],
     }));
   };
-
+  console.warn(user);
   return (
     <Form onSubmit={handleSubmit} style={{ padding: 80 }}>
       <Form.Group className="mb-3">
@@ -41,6 +43,8 @@ function RegisterForm({ user, updateUser }) {
 RegisterForm.propTypes = {
   user: PropTypes.shape({
     uid: PropTypes.string.isRequired,
+    image_url: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
   }).isRequired,
   updateUser: PropTypes.func.isRequired,
 };
