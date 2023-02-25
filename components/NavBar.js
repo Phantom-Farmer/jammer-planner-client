@@ -24,7 +24,7 @@ export default function NavBar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto" style={{ paddingTop: 30, paddingLeft: 50, paddingRight: 50 }}>
             {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
-            <Link passHref href="/band">
+            <Link passHref href="/band/new">
               <Nav.Link style={{ paddingLeft: 20, paddingRight: 50 }}>Add Band</Nav.Link>
             </Link>
             <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>

@@ -2,9 +2,9 @@ import { clientCredentials } from '../client';
 
 const dbUrl = clientCredentials.databaseURL;
 
-const getBandsByUserId = (uid) => new Promise((resolve, reject) => {
-  console.warn(uid);
-  fetch(`${dbUrl}/band?uid=${uid}`)
+const getBandsByUserId = (id) => new Promise((resolve, reject) => {
+  console.warn(id);
+  fetch(`${dbUrl}/band?author=${id}`)
     .then((response) => resolve(response.json()))
     .catch((error) => reject(error));
 });
