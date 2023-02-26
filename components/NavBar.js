@@ -14,7 +14,7 @@ export default function NavBar() {
   return (
     <Navbar collapseOnSelect className="navver" fixed="top" expand="sm" bg="dark" variant="dark">
       <Container style={{ padding: 3 }}>
-        <Link passHref href="/band">
+        <Link passHref href="/">
           <Navbar.Brand>Jammer-Planner</Navbar.Brand>
         </Link>
         {/* <Link passHref href="/">

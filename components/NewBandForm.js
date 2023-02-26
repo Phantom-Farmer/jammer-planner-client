@@ -52,7 +52,7 @@ export default function NewBandForm({ obj }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} style={{ padding: '80px' }}>
       <h2 className="text-black mt-5">{obj.id ? 'update' : 'create'} band</h2>
       <FloatingLabel controlId="floatingInput1" label="name" className="mb-3">
         <Form.Control type="text" placeholder="what is your band name?" name="name" value={formInput.name} onChange={handleChange} as="textarea" aria-label="With textarea" required />

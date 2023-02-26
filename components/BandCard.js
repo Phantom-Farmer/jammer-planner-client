@@ -21,16 +21,6 @@ export default function BandCard({ bObj, onUpdate }) {
           </Card.Text>
         </Card.Body>
         <Card.Footer className="cardFooter">
-          <Link href="/" passHref>
-            <Button onClick={deleteThisBandCard} className="m-3">
-              delete
-            </Button>
-          </Link>
-          <Link href={`/band/edit/${bObj.id}`} passHref>
-            <Button className="m-3">
-              edit
-            </Button>
-          </Link>
           <Link href={`song/new/${bObj.id}`} passHref>
             <Button className="m-3">
               add song
@@ -46,7 +36,7 @@ export default function BandCard({ bObj, onUpdate }) {
               rehearsals
             </Button>
           </Link>
-          <Link href={`song/${bObj.id}`} passHref>
+          <Link href={`song/band/${bObj.id}`} passHref>
             <Button className="m-3">
               song list
             </Button>
@@ -54,6 +44,16 @@ export default function BandCard({ bObj, onUpdate }) {
           <Link href={`set/${bObj.id}`} passHref>
             <Button className="m-3">
               set lists
+            </Button>
+          </Link>
+          <Link href={`/band/edit/${bObj.id}`} passHref>
+            <Button className="m-4">
+              edit
+            </Button>
+          </Link>
+          <Link href="/" passHref>
+            <Button onClick={deleteThisBandCard} className="m-5">
+              delete
             </Button>
           </Link>
         </Card.Footer>
