@@ -51,7 +51,7 @@ const deleteSingleSet = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const updateSong = (setObj, id) => new Promise((resolve, reject) => {
+const updateSet = (setObj, id) => new Promise((resolve, reject) => {
   const setlistObj = {
     title: setObj.title,
     song: setObj.song,
@@ -73,6 +73,6 @@ export {
   createSet,
   getSingleSet,
   deleteSingleSet,
-  updateSong,
+  updateSet,
 
 };
