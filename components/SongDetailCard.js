@@ -8,24 +8,24 @@ export default function SongDetailCard({ sObj }) {
     <>
       <Card className="dc" style={{ width: '75rem' }}>
         <Card.Body style={{ backgroundColor: 'peachpuff' }}>
-          <Card.Text>
+          <Card.Text style={{ fontSize: '50px' }}>
             {sObj.title}
           </Card.Text>
           <div>
             <h4>- key:</h4>
-            <h3>{sObj.key}</h3>
+            <h3 style={{ marginLeft: '4rem' }}>{sObj.key}</h3>
           </div>
           <div>
             <h4>- signature:</h4>
-            <h3>{sObj.signature}</h3>
+            <h3 style={{ marginLeft: '4rem' }}>{sObj.signature}</h3>
           </div>
           <div>
             <h4>- vibe:</h4>
-            <h3>{sObj.vibe}</h3>
+            <h3 style={{ marginLeft: '4rem' }}>{sObj.vibe}</h3>
           </div>
           <div>
             <h4>- lyric:</h4>
-            <h3>{sObj.lyric}</h3>
+            <h3 style={{ marginLeft: '4rem' }}>{sObj.lyric}</h3>
           </div>
           {/* <Link href={`/song/band/${sObj.band.id}`} passHref>
             <Button className="m-2">

@@ -14,7 +14,7 @@ export default function SongCard({ sObj, onUpdate }) {
     <>
       <Card className="dc" style={{ width: '75rem' }}>
         <Card.Body style={{ backgroundColor: 'peachpuff' }}>
-          <Card.Text>
+          <Card.Text style={{ fontSize: '50px' }}>
             {sObj.title}
           </Card.Text>
           <Link href={`/song/detail/${sObj.id}`} passHref>
@@ -23,12 +23,12 @@ export default function SongCard({ sObj, onUpdate }) {
             </Button>
           </Link>
           <Link href={`/song/edit/${sObj.id}`} passHref>
-            <Button className="m-2">
+            <Button className="m-6">
               edit
             </Button>
           </Link>
           <Link href={`/song/band/${sObj.band.id}`} passHref>
-            <Button onClick={deleteThisSongCard} className="m-2">
+            <Button onClick={deleteThisSongCard} className="m-5">
               delete
             </Button>
           </Link>

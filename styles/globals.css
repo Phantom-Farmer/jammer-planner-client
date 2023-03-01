@@ -22,33 +22,82 @@ body {
 }
 
 .sc {
-  padding: 20px;
+  padding: 8px;
   margin: 20px;
 }
 
 .m-4 {
   background-color: peachpuff;
   color: black;
-  outline-color: palevioletred;
+  border-color: whitesmoke;
+}
+
+.m-4:hover {
+  background-color: lightpink;
 }
 
 .m-5 {
-  background-color: red;
-  outline-color: palevioletred;
+  background-color: black;
+  border-color: whitesmoke;
+}
+
+.m-5:hover {
+  background-color: lightpink;
 }
 
 .m-2 {
   background-color: lavenderblush;
   color: black;
-  outline-color: p;
+  border-color: whitesmoke;
+}
+
+.m-2:hover {
+  background-color: lightpink;
 }
 
 .m-3 {
   background-color: lavenderblush;
   color: black;
-  outline-color: palevioletred;
+  border-color: whitesmoke;
+}
+
+.m-3:hover {
+  background-color: lightpink;
 }
 
 .dc {
+  padding: 8px;
   margin: 20px;
+}
+
+.m-6 {
+  background-color: lightblue;
+  color: black;
+  border-color: whitesmoke;
+}
+
+.m-6:hover {
+  background-color: lightpink;
+}
+
+.stc {
+  padding: 8px;
+  margin: 20px;
+  border: 20px;
+  border-color: white;
+  outline: 8px;
+}
+
+.so {
+  border-color: transparent;
+  margin-left: 8rem;
+}
+
+.so:hover {
+  background-color: lightpink;
+}
+
+.sl {
+  margin-right: 33rem;
+  color: white;
 }

@@ -12,18 +12,18 @@ export default function SetCard({ setObj, onUpdate }) {
   };
   return (
     <>
-      <Card className="dc" style={{ width: '75rem' }}>
-        <Card.Body style={{ backgroundColor: 'pink' }}>
-          <Card.Text>
+      <Card className="stc" style={{ width: '40rem' }}>
+        <Card.Body style={{ backgroundColor: 'rgb(184, 231, 184)' }}>
+          <Card.Text style={{ fontSize: '50px' }}>
             {setObj.title}
           </Card.Text>
           <div>
             <h4>- songs:</h4>
-            <h3>{setObj.song}</h3>
+            <h3 style={{ marginLeft: '4rem' }}>{setObj.song}</h3>
           </div>
           <div>
             <h4>- notes:</h4>
-            <h3>{setObj.note}</h3>
+            <h3 style={{ marginLeft: '4rem' }}>{setObj.note}</h3>
           </div>
           <Link href={`/setlist/detail/${setObj.id}`} passHref>
             <Button className="m-2">
@@ -31,12 +31,12 @@ export default function SetCard({ setObj, onUpdate }) {
             </Button>
           </Link>
           <Link href={`/setlist/edit/${setObj.id}`} passHref>
-            <Button className="m-2">
+            <Button className="m-6">
               edit
             </Button>
           </Link>
           <Link href={`/setlist/band/${setObj.band.id}`} passHref>
-            <Button onClick={deleteThisSetCard} className="m-2">
+            <Button onClick={deleteThisSetCard} className="m-5">
               delete
             </Button>
           </Link>

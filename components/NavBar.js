@@ -22,12 +22,12 @@ export default function NavBar() {
   </Link> */}
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto" style={{ paddingTop: 30, paddingLeft: 50, paddingRight: 50 }}>
+          <Nav className="me-auto" style={{ paddingTop: 30, paddingLeft: 20, paddingRight: 20 }}>
             {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
             <Link passHref href="/band/new">
-              <Nav.Link style={{ paddingLeft: 20, paddingRight: 50 }}>Add Band</Nav.Link>
+              <Nav.Link className="sl" style={{ paddingLeft: 20, paddingRight: 90, fontSize: 20 }}>Add Band</Nav.Link>
             </Link>
-            <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
+            <Button style={{ backgroundColor: 'transparent' }} type="button" size="lg" className="so" onClick={signOut}>
               Sign Out
             </Button>
             <div className="navbarProfile" id="navbarTogglerDemo01">

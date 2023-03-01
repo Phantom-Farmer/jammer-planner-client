@@ -6,17 +6,17 @@ export default function SetCard({ setObj }) {
   return (
     <>
       <Card className="dc" style={{ width: '75rem' }}>
-        <Card.Body style={{ backgroundColor: 'peachpuff' }}>
-          <Card.Text>
+        <Card.Body style={{ backgroundColor: 'rgb(184, 231, 184)' }}>
+          <Card.Text style={{ fontSize: '50px' }}>
             {setObj.title}
           </Card.Text>
           <div>
             <h4>- songs:</h4>
-            <h3>{setObj.song}</h3>
+            <h3 style={{ marginLeft: '4rem' }}>{setObj.song}</h3>
           </div>
           <div>
             <h4>- notes:</h4>
-            <h3>{setObj.note}</h3>
+            <h3 style={{ marginLeft: '4rem' }}>{setObj.note}</h3>
           </div>
         </Card.Body>
       </Card>

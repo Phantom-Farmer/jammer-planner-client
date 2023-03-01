@@ -16,7 +16,7 @@ export default function BandCard({ bObj, onUpdate }) {
     <>
       <Card className="sc" style={{ width: '75rem' }}>
         <Card.Body style={{ backgroundColor: 'lightblue' }}>
-          <Card.Text>
+          <Card.Text style={{ fontSize: '50px' }}>
             {bObj.name}
           </Card.Text>
         </Card.Body>
@@ -52,7 +52,7 @@ export default function BandCard({ bObj, onUpdate }) {
             </Button>
           </Link>
           <Link href="/" passHref>
-            <Button onClick={deleteThisBandCard} className="m-5" style={{ outline: 'none' }}>
+            <Button className="m-5" onClick={deleteThisBandCard}>
               delete
             </Button>
           </Link>
