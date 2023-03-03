@@ -31,9 +31,9 @@ export default function BandCard({ bObj, onUpdate }) {
               add setlist
             </Button>
           </Link>
-          <Link href={`rehearsal/${bObj.id}`} passHref>
+          <Link href={`rehearsal/new/${bObj.id}`} passHref>
             <Button className="m-3">
-              rehearsals
+              add rehearsal
             </Button>
           </Link>
           <Link href={`song/band/${bObj.id}`} passHref>
@@ -44,6 +44,11 @@ export default function BandCard({ bObj, onUpdate }) {
           <Link href={`setlist/band/${bObj.id}`} passHref>
             <Button className="m-3">
               set lists
+            </Button>
+          </Link>
+          <Link href={`rehearsal/band/${bObj.id}`} passHref>
+            <Button className="m-3">
+              rehearsals
             </Button>
           </Link>
           <Link href={`/band/edit/${bObj.id}`} passHref>
