@@ -8,8 +8,8 @@ function RegisterForm({ user, updateUser }) {
   const [formData, setFormData] = useState({
     name: '',
     uid: user.uid,
-    image_url: '',
-    email: '',
+    image_url: user.image_url,
+    email: user.email,
   });
 
   const handleSubmit = (e) => {

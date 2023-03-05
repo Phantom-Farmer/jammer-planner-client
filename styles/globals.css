@@ -101,3 +101,11 @@ body {
   margin-right: 33rem;
   color: white;
 }
+
+.mb-3 {
+  white-space: pre-wrap;
+}
+
+.songwords {
+  white-space: pre-wrap;
+}

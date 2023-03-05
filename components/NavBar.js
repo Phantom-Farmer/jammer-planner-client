@@ -10,7 +10,7 @@ import { useAuth } from '../utils/context/authContext';
 import ProfileDropdown from './ProfileDropdown';
 
 export default function NavBar() {
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
   return (
     <Navbar collapseOnSelect className="navver" fixed="top" expand="sm" bg="dark" variant="dark">
       <Container style={{ padding: 3 }}>
@@ -27,7 +27,7 @@ export default function NavBar() {
             <Link passHref href="/band/new">
               <Nav.Link className="sl" style={{ paddingLeft: 20, paddingRight: 90, fontSize: 20 }}>Add Band</Nav.Link>
             </Link>
-            <Button style={{ backgroundColor: 'transparent' }} type="button" size="lg" className="so" onClick={signOut}>
+            <Button style={{ backgroundColor: 'transparent', marginBottom: '12px' }} type="button" size="lg" className="so" onClick={signOut}>
               Sign Out
             </Button>
             <div className="navbarProfile" id="navbarTogglerDemo01">
@@ -38,7 +38,7 @@ export default function NavBar() {
                   </a>
                   <ul className="dropdown-menu dropdown-menu-end">
                     <div className="profileDropdownBottomDiv" style={{ paddingLeft: 50, paddingRight: 30 }}>
-                      <ProfileDropdown />
+                      <ProfileDropdown user={user} updateUser={updateUser} />
                       <button type="button" className="signOutBtn btn" onClick={signOut}>
                         Sign Out
                       </button>

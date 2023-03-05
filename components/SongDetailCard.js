@@ -6,7 +6,7 @@ import { Card, Button } from 'react-bootstrap';
 export default function SongDetailCard({ sObj }) {
   return (
     <>
-      <Card className="dc" style={{ width: '75rem' }}>
+      <Card className="dc" style={{ width: '90rem' }}>
         <Card.Body style={{ backgroundColor: 'peachpuff' }}>
           <Card.Text style={{ fontSize: '50px' }}>
             {sObj.title}
@@ -25,7 +25,7 @@ export default function SongDetailCard({ sObj }) {
           </div>
           <div>
             <h4>- lyric:</h4>
-            <h3 style={{ marginLeft: '4rem' }}>{sObj.lyric}</h3>
+            <h3 className="songwords" style={{ marginLeft: '4rem' }}>{sObj.lyric}</h3>
           </div>
           {/* <Link href={`/song/band/${sObj.band.id}`} passHref>
             <Button className="m-2">

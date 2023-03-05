@@ -12,7 +12,7 @@ export default function SongCard({ sObj, onUpdate }) {
   };
   return (
     <>
-      <Card className="dc" style={{ width: '75rem' }}>
+      <Card className="dc" style={{ width: '50rem' }}>
         <Card.Body style={{ backgroundColor: 'peachpuff' }}>
           <Card.Text style={{ fontSize: '50px' }}>
             {sObj.title}
@@ -23,7 +23,7 @@ export default function SongCard({ sObj, onUpdate }) {
             </Button>
           </Link>
           <Link href={`/song/edit/${sObj.id}`} passHref>
-            <Button className="m-6">
+            <Button style={{ marginRight: '390px' }} className="m-6">
               edit
             </Button>
           </Link>
