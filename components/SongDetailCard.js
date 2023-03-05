@@ -8,9 +8,6 @@ export default function SongDetailCard({ sObj }) {
     <>
       <Card className="dc" style={{ width: '90rem' }}>
         <Card.Body style={{ backgroundColor: 'peachpuff' }}>
-          <Card.Text style={{ fontSize: '50px' }}>
-            {sObj.title}
-          </Card.Text>
           <div>
             <h4>- key:</h4>
             <h3 style={{ marginLeft: '4rem' }}>{sObj.key}</h3>

@@ -94,7 +94,7 @@ export default function NewSongForm({ obj, bcId }) {
       <FloatingLabel controlId="floatingInput2" label="lyric" className="mb-3">
         <Form.Control type="text" placeholder="LYRIC" name="lyric" value={formInput.lyric} onChange={handleChange} as="textarea" aria-label="With textarea" required />
       </FloatingLabel>
-      <Button type="submit">{obj.id ? 'update' : 'create'} song</Button>
+      <Button className="m-4" type="submit">{obj.id ? 'update' : 'create'} song</Button>
     </Form>
   );
 }

@@ -99,7 +99,7 @@ export default function NewRehearsalForm({ rObj, bcId }) {
       <FloatingLabel controlId="floatingInput2" label="message" className="mb-3">
         <Form.Control type="text" placeholder="message" name="message" value={formInput.message} onChange={handleChange} as="textarea" aria-label="With textarea" required />
       </FloatingLabel>
-      <Button type="submit">{rObj.id ? 'update' : 'create'} rehearsal</Button>
+      <Button className="m-4" type="submit">{rObj.id ? 'update' : 'create'} rehearsal</Button>
     </Form>
   );
 }

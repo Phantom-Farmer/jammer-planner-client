@@ -22,7 +22,7 @@ export default function SingleSongDetails() {
     <>
       <div style={{ padding: 120 }} className="container-fluid">
         <h2>
-          song details
+          song details for {songCard.title}
         </h2>
         <div className="d-flex flex-wrap">
           <SongDetailCard sObj={songCard} onUpdate={getOneSong} />

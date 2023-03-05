@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { React, useEffect, useState } from 'react';
@@ -35,7 +36,7 @@ export default function Home() {
     <>
       <div style={{ padding: 120 }} className="container-fluid">
         <h2>
-          your bands
+          {user.fbUser.displayName}'s bands
         </h2>
         <div className="d-flex flex-wrap">
           {bandCards.map((bObj) => (
