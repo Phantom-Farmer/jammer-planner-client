@@ -15,7 +15,7 @@ export default function RehearsalCard({ rObj, onUpdate }) {
       <Card className="dc" style={{ width: '75rem' }}>
         <Card.Body style={{ backgroundColor: 'peachpuff' }}>
           <Card.Text style={{ fontSize: '50px' }}>
-            rehearsal for {rObj.date} {rObj.time} at {rObj.location} in preparation for the show at {rObj.show}
+            rehearsal for {rObj.date} at {rObj.time} at {rObj.location} in preparation for the show at {rObj.show}
           </Card.Text>
           <div>
             <h4>- message:</h4>
@@ -23,9 +23,13 @@ export default function RehearsalCard({ rObj, onUpdate }) {
           </div>
           <div>
             <h4>- setlist:</h4>
-            <h3 style={{ marginLeft: '4rem' }}>{rObj.set}</h3>
+            <h3 style={{ marginLeft: '4rem' }}>{rObj.set.title}</h3>
           </div>
-
+          <Link href={`/setlist/detail/${rObj.set.id}`} passHref>
+            <Button className="m-2">
+              view set list
+            </Button>
+          </Link>
           <Link href={`/rehearsal/edit/${rObj.id}`} passHref>
             <Button className="m-6">
               edit
