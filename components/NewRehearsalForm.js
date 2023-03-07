@@ -7,6 +7,7 @@ import { Button } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import { createRehearsal, updateRehearsal } from '../utils/data/rehearsalData';
 import { getSingleBand } from '../utils/data/bandData';
+import { getSetsByBand } from '../utils/data/setData';
 
 const initialState = {
   id: '',
@@ -24,6 +25,7 @@ export default function NewRehearsalForm({ rObj, bcId }) {
   const [formInput, setFormInput] = useState(initialState);
   const [bandCard, setBandCard] = useState({});
   const [bandNumber, setbandNumber] = useState(null);
+  const [sets, setSets] = useState([]);
   const router = useRouter();
 
   const { user } = useAuth();
@@ -35,6 +37,9 @@ export default function NewRehearsalForm({ rObj, bcId }) {
     } else {
       getSingleBand(bcId).then((bc) => {
         setBandCard(bc);
+      });
+      getSetsByBand(bcId).then((bandSets) => {
+        setSets(bandSets);
       });
     }
   }, [rObj]);
@@ -62,7 +67,7 @@ export default function NewRehearsalForm({ rObj, bcId }) {
       show: formInput.show,
       message: formInput.message,
       author: user.id,
-      set: formInput.set,
+      set: formInput.set.id,
       band: bandNumber,
     };
     if (rObj.id) {
@@ -93,8 +98,13 @@ export default function NewRehearsalForm({ rObj, bcId }) {
       <FloatingLabel controlId="floatingInput2" label="show" className="mb-3">
         <Form.Control type="text" placeholder="SHOW" name="show" value={formInput.show} onChange={handleChange} as="textarea" aria-label="With textarea" required />
       </FloatingLabel>
-      <FloatingLabel controlId="floatingInput2" label="set" className="mb-3">
-        <Form.Control type="text" placeholder="SET" name="set" value={formInput.set} onChange={handleChange} as="textarea" aria-label="With textarea" required />
+      <FloatingLabel controlId="floatingSelect" label="add set">
+        <Form.Select name="set" value={formInput.set} onChange={handleChange} className="mb-3" required>
+          <option disabled value="">
+            select a set list
+          </option>
+          {sets.map((s) => <option key={s.id} value={s.id} display={s.title}>{s.title}</option>)}
+        </Form.Select>
       </FloatingLabel>
       <FloatingLabel controlId="floatingInput2" label="message" className="mb-3">
         <Form.Control type="text" placeholder="message" name="message" value={formInput.message} onChange={handleChange} as="textarea" aria-label="With textarea" required />

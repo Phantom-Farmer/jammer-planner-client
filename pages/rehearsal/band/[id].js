@@ -4,15 +4,19 @@ import { useRouter } from 'next/router';
 import { React, useEffect, useState } from 'react';
 import { getRehearsalsByBand } from '../../../utils/data/rehearsalData';
 import RehearsalCard from '../../../components/RehearsalCard';
+// import { useAuth } from '../../utils/context/authContext';
 
 export default function DisplayRehearsals() {
   const [rehearsalCards, setRehearsalCards] = useState([]);
   const router = useRouter();
+  // const { user } = useAuth();
+  // const { band } =
 
   const { id } = router.query;
+  console.warn(router.pathname);
   const getAllRehearsals = () => {
-    getRehearsalsByBand(id).then((rcArray) => {
-      setRehearsalCards(rcArray);
+    getRehearsalsByBand(id).then((scArray) => {
+      setRehearsalCards(scArray);
     });
   };
 

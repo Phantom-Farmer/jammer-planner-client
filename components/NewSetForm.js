@@ -23,25 +23,26 @@ export default function NewSetForm({ obj, bcId }) {
   const [bandCard, setBandCard] = useState({});
   const [bandNumber, setbandNumber] = useState(null);
   const [songs, setSongs] = useState([]);
+  // const [field, setField] = useState({});
   // const [songIds, setSongIds] = useState([]);
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  const [songName, setSongName] = useState('');
+  // const [selectedOptions, setSelectedOptions] = useState([]);
+  // const [songName, setSongName] = useState('');
   // const [selectBars, setSelectBars] = useState([]);
   const router = useRouter();
 
   const { user } = useAuth();
 
-  const handleSelectSong = (e) => {
+  /* const handleSelectSong = (e) => {
     const songId = e.target.value;
-    const songTitle = e.target.text;
+    const songTitle = e.target.display;
+    // console.warn(e.target.text);
     const selectedOption = { songId, songTitle };
     const currentSelectedOptions = [...selectedOptions];
     setSelectedOptions([...currentSelectedOptions, selectedOption]);
-    console.warn(e.target.value);
     // const currentSelectedOptions = [...selectedOptions];
-    setSongName(e.target.text);
+    setSongName(songTitle);
   };
-  useEffect(() => { console.warn('selectedOptions', selectedOptions); }, [selectedOptions]);
+  useEffect(() => { console.warn('selectedOptions', selectedOptions); }, [selectedOptions]); */
 
   useEffect(() => {
     if (obj.id) {
@@ -93,26 +94,27 @@ export default function NewSetForm({ obj, bcId }) {
   };
 
   return (
-
-    <Form onSubmit={handleSubmit} style={{ padding: '80px' }}>
-      <h2 className="text-black mt-5">{obj.id ? 'update' : 'create'} setlist</h2>
-      <FloatingLabel controlId="floatingInput2" label="title" className="mb-3">
-        <Form.Control type="text" placeholder="TITLE" name="title" value={formInput.title} onChange={handleChange} as="textarea" aria-label="With textarea" required />
-      </FloatingLabel>
-      <FloatingLabel controlId="floatingSelect" label="add song">
-        <Form.Select name="song" value={songName} onChange={handleSelectSong} className="mb-3" required>
-          <option disabled value="">
-            select a song
-          </option>
-          {songs.map((s) => <option key={s.id} value={s.id}>{s.title}</option>)}
-        </Form.Select>
-      </FloatingLabel>
-      <FloatingLabel controlId="floatingInput2" label="note" className="mb-3">
-        <Form.Control type="text" placeholder="NOTE" name="note" value={formInput.note} onChange={handleChange} as="textarea" aria-label="With textarea" required />
-      </FloatingLabel>
-      <Button className="m-4" type="submit">{obj.id ? 'update' : 'create'} setlist</Button>
-    </Form>
-
+    <>
+      <Form onSubmit={handleSubmit} style={{ padding: '80px' }}>
+        <h2 className="text-black mt-5">{obj.id ? 'update' : 'create'} setlist</h2>
+        <FloatingLabel controlId="floatingInput2" label="title" className="mb-3">
+          <Form.Control type="text" placeholder="TITLE" name="title" value={formInput.title} onChange={handleChange} as="textarea" aria-label="With textarea" required />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingSelect" label="add song">
+          <Form.Select name="song" value={formInput.song} onChange={handleChange} className="mb-3" required>
+            <option disabled value="">
+              select a song
+            </option>
+            {songs.map((s) => <option key={s.id} value={s.title} display={s.title}>{s.title}</option>)}
+          </Form.Select>
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingInput2" label="note" className="mb-3">
+          <Form.Control type="text" placeholder="NOTE" name="note" value={formInput.note} onChange={handleChange} as="textarea" aria-label="With textarea" required />
+        </FloatingLabel>
+        <Button className="m-4" type="submit">{obj.id ? 'update' : 'create'} setlist</Button>
+      </Form>
+      {songs.map((s) => <h1 key={s.id} value={s.title}>{s.title}</h1>)}
+    </>
   );
 }
 
