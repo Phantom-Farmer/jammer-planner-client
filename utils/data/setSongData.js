@@ -21,6 +21,8 @@ const createSetSong = (setSong) => new Promise((resolve, reject) => {
   const setSongObj = {
     set_id: Number(setSong.setId),
     song_id: Number(setSong.songId),
+    band_id: Number(setSong.bandId),
+    order: setSong.order,
   };
   fetch(`${dbUrl}/set_song`, {
     method: 'POST',
@@ -33,4 +35,22 @@ const createSetSong = (setSong) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export { getSetSongsBySet, deleteSetSong, createSetSong };
+const updateSetSong = (sObj, id) => new Promise((resolve, reject) => {
+  const setSongObj = {
+    order: sObj.order,
+    set: Number(sObj.set),
+    band: Number(sObj.band),
+    author: Number(sObj.author),
+  };
+  fetch(`${dbUrl}/setSong/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(setSongObj),
+  })
+    .then((response) => resolve(response))
+    .catch((error) => reject(error));
+});
+
+export {
+  getSetSongsBySet, deleteSetSong, createSetSong, updateSetSong,
+};

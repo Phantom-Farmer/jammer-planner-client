@@ -18,13 +18,13 @@ export default function SetCard({ setObj, onUpdate }) {
             {setObj.title}
           </Card.Text>
           <div>
-            <h4>- songs:</h4>
-            <h3 style={{ marginLeft: '4rem' }}>{setObj.song}</h3>
+            <h4>- notes: {setObj.note}</h4>
           </div>
-          <div>
-            <h4>- notes:</h4>
-            <h3 style={{ marginLeft: '4rem' }}>{setObj.note}</h3>
-          </div>
+          <Link href={`/setSong/new/${setObj.band.id}`} passHref>
+            <Button className="m-2">
+              add song
+            </Button>
+          </Link>
           <Link href={`/setlist/detail/${setObj.id}`} passHref>
             <Button className="m-2">
               view details

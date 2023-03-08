@@ -74,11 +74,33 @@ const updateSong = (sObj, id) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const addSongToSet = (sObj, id) => new Promise((resolve, reject) => {
+  const songObj = {
+    title: sObj.title,
+    key: sObj.key,
+    signature: sObj.signature,
+    vibe: sObj.vibe,
+    lyric: sObj.lyric,
+    band: Number(sObj.band),
+    author: Number(sObj.author),
+  };
+  fetch(`${dbUrl}/song/${id}`, {
+    method: 'POST',
+    body: JSON.stringify(songObj),
+    headers: {
+      'Content-type': 'application/json',
+    },
+  })
+    .then((response) => resolve(response.json()))
+    .catch((err) => reject(err));
+});
+
 export {
   getSongsByBand,
   createSong,
   getSingleSong,
   deleteSingleSong,
   updateSong,
+  addSongToSet,
 
 };
