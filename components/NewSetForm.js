@@ -7,12 +7,11 @@ import { Button } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import { createSet, updateSet } from '../utils/data/setData';
 import { getSingleBand } from '../utils/data/bandData';
-import { getSongsByBand } from '../utils/data/songData';
+// import { getSongsByBand } from '../utils/data/songData';
 
 const initialState = {
   id: 0,
   title: '',
-  song: '',
   note: '',
   band: 0,
   author: 0,
@@ -22,7 +21,7 @@ export default function NewSetForm({ obj, bcId }) {
   const [formInput, setFormInput] = useState(initialState);
   const [bandCard, setBandCard] = useState({});
   const [bandNumber, setbandNumber] = useState(null);
-  const [songs, setSongs] = useState([]);
+  // const [songs, setSongs] = useState([]);
   // const [field, setField] = useState({});
   // const [songIds, setSongIds] = useState([]);
   // const [selectedOptions, setSelectedOptions] = useState([]);
@@ -52,9 +51,9 @@ export default function NewSetForm({ obj, bcId }) {
       getSingleBand(bcId).then((bc) => {
         setBandCard(bc);
       });
-      getSongsByBand(bcId).then((bandSongs) => {
+      /* getSongsByBand(bcId).then((bandSongs) => {
         setSongs(bandSongs);
-      });
+      }); */
     }
   }, [obj]);
 
@@ -100,20 +99,11 @@ export default function NewSetForm({ obj, bcId }) {
         <FloatingLabel controlId="floatingInput2" label="title" className="mb-3">
           <Form.Control type="text" placeholder="TITLE" name="title" value={formInput.title} onChange={handleChange} as="textarea" aria-label="With textarea" required />
         </FloatingLabel>
-        <FloatingLabel controlId="floatingSelect" label="add song">
-          <Form.Select name="song" value={formInput.song} onChange={handleChange} className="mb-3" required>
-            <option disabled value="">
-              select a song
-            </option>
-            {songs.map((s) => <option key={s.id} value={s.title} display={s.title}>{s.title}</option>)}
-          </Form.Select>
-        </FloatingLabel>
         <FloatingLabel controlId="floatingInput2" label="note" className="mb-3">
           <Form.Control type="text" placeholder="NOTE" name="note" value={formInput.note} onChange={handleChange} as="textarea" aria-label="With textarea" required />
         </FloatingLabel>
         <Button className="m-4" type="submit">{obj.id ? 'update' : 'create'} setlist</Button>
       </Form>
-      {songs.map((s) => <h1 key={s.id} value={s.title}>{s.title}</h1>)}
     </>
   );
 }
@@ -122,7 +112,6 @@ NewSetForm.propTypes = {
   obj: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
-    song: PropTypes.string,
     note: PropTypes.string,
     author: PropTypes.number,
     band: PropTypes.number,
