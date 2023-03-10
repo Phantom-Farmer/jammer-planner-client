@@ -16,7 +16,7 @@ export default function SetCard({ setObj, onUpdate }) {
 
   return (
     <>
-      <Card className="stc" style={{ width: '70rem' }}>
+      <Card className="stc" style={{ width: '50rem' }}>
         <Card.Body style={{ backgroundColor: 'rgb(184, 231, 184)' }}>
           <Card.Text style={{ fontSize: '50px' }}>
             {setObj.title}
@@ -31,27 +31,12 @@ export default function SetCard({ setObj, onUpdate }) {
             ? setObj?.songs?.map((song) => {
               console.log(song);
               return (
-                <p key={song.id} className="badge text-bg-light">
+                <h1 style={{ marginLeft: '60px', fontSize: '60px' }} key={song.id} className="good">
                   {song.title}
-                </p>
+                </h1>
               );
             })
             : ''}
-          <Link href={`/setSong/new/${setObj.id}`} passHref>
-            <Button className="m-2">
-              add song
-            </Button>
-          </Link>
-          <Link href={`/setlist/detail/${setObj.id}`} passHref>
-            <Button className="m-2">
-              view details
-            </Button>
-          </Link>
-          <Link href={`/setlist/edit/${setObj.id}`} passHref>
-            <Button className="m-6">
-              edit
-            </Button>
-          </Link>
           <Link href={`/setlist/band/${setObj.band.id}`} passHref>
             <Button onClick={deleteThisSetCard} className="m-5">
               delete

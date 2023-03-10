@@ -12,5 +12,9 @@ export default function UpdateRehearsalCard() {
     getSingleRehearsal(id).then(setEditItem);
   }, [id]);
 
-  return (<NewRehearsalForm rObj={editItem} />);
+  if (editItem.id) {
+    return (<NewRehearsalForm rObj={editItem} />);
+  }
+
+  return null;
 }

@@ -24,7 +24,7 @@ const initialState = {
 export default function NewRehearsalForm({ rObj, bcId }) {
   const [formInput, setFormInput] = useState(initialState);
   const [bandCard, setBandCard] = useState({});
-  const [bandNumber, setbandNumber] = useState(null);
+  // const [bandNumber, setbandNumber] = useState(null);
   // const [setNumber, setSetNumber] = useState(null);
   const [sets, setSets] = useState([]);
   const router = useRouter();
@@ -34,7 +34,9 @@ export default function NewRehearsalForm({ rObj, bcId }) {
   useEffect(() => {
     if (rObj.id) {
       setFormInput(rObj);
-      setbandNumber(rObj.band.id);
+      getSetsByBand(rObj.band.id).then((bandSets) => {
+        setSets(bandSets);
+      });
       // setSetNumber(rObj.set.id);
     } else {
       getSingleBand(bcId).then((bc) => {
@@ -45,10 +47,6 @@ export default function NewRehearsalForm({ rObj, bcId }) {
       });
     }
   }, [rObj]);
-
-  useEffect(() => {
-    console.warn(bandNumber);
-  }, [bandNumber]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -69,12 +67,12 @@ export default function NewRehearsalForm({ rObj, bcId }) {
       show: formInput.show,
       message: formInput.message,
       author: user.id,
-      band: bandNumber,
+      band: rObj.band.id,
       set: formInput.set,
     };
     if (rObj.id) {
       updateRehearsal(rehearsalObj, rObj.id)
-        .then(() => router.push(`/rehearsal/band/${bandNumber}`));
+        .then(() => router.push(`/rehearsal/band/${rObj.band.id}`));
     } else {
       const payload = {
         ...formInput, author: bandCard.author.id, band: bandCard.id,
