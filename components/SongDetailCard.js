@@ -48,7 +48,7 @@ SongDetailCard.propTypes = {
     signature: PropTypes.string,
     vibe: PropTypes.string,
     lyric: PropTypes.string,
-    band: PropTypes.string,
+    band: PropTypes.number,
     author: PropTypes.number,
   }).isRequired,
 

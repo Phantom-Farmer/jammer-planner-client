@@ -1,3 +1,4 @@
+/* eslint-disable no-lone-blocks */
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
@@ -7,7 +8,7 @@ import { Button } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import { createSet, updateSet } from '../utils/data/setData';
 import { getSingleBand } from '../utils/data/bandData';
-// import { getSongsByBand } from '../utils/data/songData';
+import { getSongsByBand } from '../utils/data/songData';
 
 const initialState = {
   id: 0,
@@ -21,27 +22,17 @@ export default function NewSetForm({ obj, bcId }) {
   const [formInput, setFormInput] = useState(initialState);
   const [bandCard, setBandCard] = useState({});
   const [bandNumber, setbandNumber] = useState(null);
-  // const [songs, setSongs] = useState([]);
+  const [songs, setSongs] = useState([]);
   // const [field, setField] = useState({});
   // const [songIds, setSongIds] = useState([]);
   // const [selectedOptions, setSelectedOptions] = useState([]);
   // const [songName, setSongName] = useState('');
   // const [selectBars, setSelectBars] = useState([]);
   const router = useRouter();
+  const selectBarData = Array(5).fill(songs);
+  const arrayOfSongIds = Array(5).fill(null);
 
   const { user } = useAuth();
-
-  /* const handleSelectSong = (e) => {
-    const songId = e.target.value;
-    const songTitle = e.target.display;
-    // console.warn(e.target.text);
-    const selectedOption = { songId, songTitle };
-    const currentSelectedOptions = [...selectedOptions];
-    setSelectedOptions([...currentSelectedOptions, selectedOption]);
-    // const currentSelectedOptions = [...selectedOptions];
-    setSongName(songTitle);
-  };
-  useEffect(() => { console.warn('selectedOptions', selectedOptions); }, [selectedOptions]); */
 
   useEffect(() => {
     if (obj.id) {
@@ -51,14 +42,14 @@ export default function NewSetForm({ obj, bcId }) {
       getSingleBand(bcId).then((bc) => {
         setBandCard(bc);
       });
-      /* getSongsByBand(bcId).then((bandSongs) => {
+      getSongsByBand(bcId).then((bandSongs) => {
         setSongs(bandSongs);
-      }); */
+      });
     }
   }, [obj]);
 
   useEffect(() => {
-  }, [bandNumber]);
+  }, [bandNumber, songs]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -72,9 +63,7 @@ export default function NewSetForm({ obj, bcId }) {
     e.preventDefault();
 
     const setObj = {
-      id: formInput.id,
       title: formInput.title,
-      song: formInput.song,
       note: formInput.note,
       author: user.id,
       band: bandNumber,
@@ -83,8 +72,9 @@ export default function NewSetForm({ obj, bcId }) {
       updateSet(setObj, obj.id)
         .then(() => router.push(`/setlist/band/${bandNumber}`));
     } else {
+      console.log("we're posting a setisst");
       const payload = {
-        ...formInput, author: bandCard.author.id, band: bandCard.id,
+        author: bandCard.author.id, band: bandCard.id, note: formInput.note, title: formInput.title, songs: arrayOfSongIds,
       };
       createSet(payload).then(() => {
         router.push(`/setlist/band/${bandCard.id}`);
@@ -93,6 +83,7 @@ export default function NewSetForm({ obj, bcId }) {
   };
 
   return (
+
     <>
       <Form onSubmit={handleSubmit} style={{ padding: '80px' }}>
         <h2 className="text-black mt-5">{obj.id ? 'update' : 'create'} setlist</h2>
@@ -102,6 +93,28 @@ export default function NewSetForm({ obj, bcId }) {
         <FloatingLabel controlId="floatingInput2" label="note" className="mb-3">
           <Form.Control type="text" placeholder="NOTE" name="note" value={formInput.note} onChange={handleChange} as="textarea" aria-label="With textarea" required />
         </FloatingLabel>
+        <div>
+          {/* map over the array of song arrays, keeping track of the index position
+        of the select bar we're creating each time
+        */}
+          {selectBarData.map((sbd, index) => {
+            { /* map over the array of song arrays, keeping track of the index position
+        of the select bar we're creating each time
+        */ }
+            const changeHandler = (e) => {
+              arrayOfSongIds[index] = parseInt(e.target.value, 10);
+              console.log(arrayOfSongIds);
+            };
+            return (
+              <select onChange={changeHandler}>
+                <option value="">Choose a song</option>
+                {sbd.map((sbo) => (
+                  <option value={sbo.id}>{sbo.title}</option>
+                ))}
+              </select>
+            );
+          })}
+        </div>
         <Button className="m-4" type="submit">{obj.id ? 'update' : 'create'} setlist</Button>
       </Form>
     </>

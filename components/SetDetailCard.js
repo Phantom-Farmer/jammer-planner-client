@@ -12,7 +12,6 @@ export default function SetCard({ setObj }) {
           </Card.Text>
           <div>
             <h4>- songs:</h4>
-            <h3 style={{ marginLeft: '4rem' }}>{setObj.song}</h3>
           </div>
           <div>
             <h4>- notes:</h4>
@@ -30,7 +29,7 @@ SetCard.propTypes = {
     title: PropTypes.string,
     song: PropTypes.string,
     note: PropTypes.string,
-    band: PropTypes.string,
+    band: PropTypes.number,
     author: PropTypes.number,
   }),
 };

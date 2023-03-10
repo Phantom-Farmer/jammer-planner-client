@@ -8,7 +8,7 @@ import { Button } from 'react-bootstrap';
 import { createSetSong, updateSetSong } from '../utils/data/setSongData';
 import { getSingleBand } from '../utils/data/bandData';
 import { getSongsByBand } from '../utils/data/songData';
-import { getSetsByBand } from '../utils/data/setData';
+// import { getSetsByBand } from '../utils/data/setData';
 
 const initialState = {
   id: 0,
@@ -24,7 +24,7 @@ export default function NewSetSongForm({ obj, bcId }) {
   const [bandNumber, setbandNumber] = useState(null);
   // const [setNumber, setSetNumber] = useState(null);
   const [songs, setSongs] = useState([]);
-  const [sets, setSets] = useState([]);
+  // const [sets, setSets] = useState([]);
   const router = useRouter();
 
   // const { user } = useAuth();
@@ -41,9 +41,9 @@ export default function NewSetSongForm({ obj, bcId }) {
       getSongsByBand(bcId).then((bandSongs) => {
         setSongs(bandSongs);
       });
-      getSetsByBand(bcId).then((bandSets) => {
+      /* getSetsByBand(bcId).then((bandSets) => {
         setSets(bandSets);
-      });
+      }); */
     }
   }, [obj]);
 
@@ -85,14 +85,6 @@ export default function NewSetSongForm({ obj, bcId }) {
     <>
       <Form onSubmit={handleSubmit} style={{ padding: '80px' }}>
         <h2 className="text-black mt-5">{obj.id ? 'update' : 'choose'} song for this set</h2>
-        <FloatingLabel controlId="floatingSelect" label="add song">
-          <Form.Select name="song" value={formInput.song} onChange={handleChange} className="mb-3" required>
-            <option disabled value="">
-              select a set
-            </option>
-            {sets.map((setlist) => <option key={setlist.id} value={setlist.id} display={setlist.title}>{setlist.title}</option>)}
-          </Form.Select>
-        </FloatingLabel>
         <FloatingLabel controlId="floatingSelect" label="add song">
           <Form.Select name="song" value={formInput.song} onChange={handleChange} className="mb-3" required>
             <option disabled value="">

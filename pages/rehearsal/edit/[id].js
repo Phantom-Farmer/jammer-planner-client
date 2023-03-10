@@ -12,5 +12,5 @@ export default function UpdateRehearsalCard() {
     getSingleRehearsal(id).then(setEditItem);
   }, [id]);
 
-  return (<NewRehearsalForm obj={editItem} />);
+  return (<NewRehearsalForm rObj={editItem} />);
 }
