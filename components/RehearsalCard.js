@@ -25,11 +25,6 @@ export default function RehearsalCard({ rObj, onUpdate }) {
             <h4>- setlist:</h4>
             <h3 style={{ marginLeft: '4rem' }}>{rObj.set.title}</h3>
           </div>
-          <Link href={`/setlist/detail/${rObj.set.id}`} passHref>
-            <Button className="m-2">
-              view set list
-            </Button>
-          </Link>
           <Link href={`/rehearsal/edit/${rObj.id}`} passHref>
             <Button className="m-6">
               edit

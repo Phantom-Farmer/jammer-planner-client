@@ -12,5 +12,7 @@ export default function UpdateSetCard() {
     getSingleSet(id).then(setEditItem);
   }, [id]);
 
-  return (<NewSetForm obj={editItem} />);
+  if (editItem.id) {
+    return (<NewSetForm obj={editItem} />);
+  }
 }

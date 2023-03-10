@@ -13,10 +13,16 @@ export default function SetCard({ setObj }) {
           <div>
             <h4>- songs:</h4>
           </div>
-          <div>
-            <h4>- notes:</h4>
-            <h3 style={{ marginLeft: '4rem' }}>{setObj.note}</h3>
-          </div>
+          {setObj.songs.length > 0
+            ? setObj?.songs?.map((song) => {
+              console.log(song);
+              return (
+                <h1 key={song.id} className="good">
+                  {song.title}
+                </h1>
+              );
+            })
+            : ''}
         </Card.Body>
       </Card>
     </>
@@ -27,7 +33,7 @@ SetCard.propTypes = {
   setObj: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
-    song: PropTypes.string,
+    songs: PropTypes.string,
     note: PropTypes.string,
     band: PropTypes.number,
     author: PropTypes.number,
@@ -38,7 +44,7 @@ SetCard.defaultProps = {
   setObj: PropTypes.shape({
     id: '',
     title: '',
-    song: '',
+    songs: '',
     note: '',
     band: '',
     author: '',
