@@ -1,8 +1,11 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable @next/next/no-img-element */
+import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Card, Button } from 'react-bootstrap';
 import { deleteSingleSet } from '../utils/data/setData';
+// import { getSongsByBand } from '../utils/data/songData';
 
 export default function SetCard({ setObj, onUpdate }) {
   const deleteThisSetCard = () => {
@@ -10,9 +13,10 @@ export default function SetCard({ setObj, onUpdate }) {
       deleteSingleSet(setObj.id).then(onUpdate);
     }
   };
+
   return (
     <>
-      <Card className="stc" style={{ width: '40rem' }}>
+      <Card className="stc" style={{ width: '70rem' }}>
         <Card.Body style={{ backgroundColor: 'rgb(184, 231, 184)' }}>
           <Card.Text style={{ fontSize: '50px' }}>
             {setObj.title}
@@ -20,7 +24,20 @@ export default function SetCard({ setObj, onUpdate }) {
           <div>
             <h4>- notes: {setObj.note}</h4>
           </div>
-          <Link href={`/setSong/new/${setObj.band.id}`} passHref>
+          <div>
+            <h4>- songs: </h4>
+          </div>
+          {setObj.songs.length > 0
+            ? setObj?.songs?.map((song) => {
+              console.log(song);
+              return (
+                <p key={song.id} className="badge text-bg-light">
+                  {song.title}
+                </p>
+              );
+            })
+            : ''}
+          <Link href={`/setSong/new/${setObj.id}`} passHref>
             <Button className="m-2">
               add song
             </Button>
@@ -50,7 +67,7 @@ SetCard.propTypes = {
   setObj: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
-    song: PropTypes.string,
+    songs: PropTypes.array,
     note: PropTypes.string,
     band: PropTypes.string,
     author: PropTypes.number,
@@ -62,7 +79,7 @@ SetCard.defaultProps = {
   setObj: PropTypes.shape({
     id: '',
     title: '',
-    song: '',
+    songs: '',
     note: '',
     band: '',
     author: '',

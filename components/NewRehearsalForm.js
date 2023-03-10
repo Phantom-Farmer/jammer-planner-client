@@ -17,14 +17,15 @@ const initialState = {
   show: '',
   message: '',
   band: '',
-  set: '',
   author: '',
+  set: '',
 };
 
 export default function NewRehearsalForm({ rObj, bcId }) {
   const [formInput, setFormInput] = useState(initialState);
   const [bandCard, setBandCard] = useState({});
   const [bandNumber, setbandNumber] = useState(null);
+  // const [setNumber, setSetNumber] = useState(null);
   const [sets, setSets] = useState([]);
   const router = useRouter();
 
@@ -34,6 +35,7 @@ export default function NewRehearsalForm({ rObj, bcId }) {
     if (rObj.id) {
       setFormInput(rObj);
       setbandNumber(rObj.band.id);
+      // setSetNumber(rObj.set.id);
     } else {
       getSingleBand(bcId).then((bc) => {
         setBandCard(bc);
@@ -59,7 +61,7 @@ export default function NewRehearsalForm({ rObj, bcId }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const rehObj = {
+    const rehearsalObj = {
       id: formInput.id,
       date: formInput.date,
       time: formInput.time,
@@ -67,11 +69,11 @@ export default function NewRehearsalForm({ rObj, bcId }) {
       show: formInput.show,
       message: formInput.message,
       author: user.id,
-      set: formInput.set.id,
       band: bandNumber,
+      set: formInput.set,
     };
     if (rObj.id) {
-      updateRehearsal(rehObj, rObj.id)
+      updateRehearsal(rehearsalObj, rObj.id)
         .then(() => router.push(`/rehearsal/band/${bandNumber}`));
     } else {
       const payload = {
@@ -98,6 +100,9 @@ export default function NewRehearsalForm({ rObj, bcId }) {
       <FloatingLabel controlId="floatingInput2" label="show" className="mb-3">
         <Form.Control type="text" placeholder="SHOW" name="show" value={formInput.show} onChange={handleChange} as="textarea" aria-label="With textarea" required />
       </FloatingLabel>
+      <FloatingLabel controlId="floatingInput2" label="message" className="mb-3">
+        <Form.Control type="text" placeholder="MESSAGE" name="message" value={formInput.message} onChange={handleChange} as="textarea" aria-label="With textarea" required />
+      </FloatingLabel>
       <FloatingLabel controlId="floatingSelect" label="add set">
         <Form.Select name="set" value={formInput.set} onChange={handleChange} className="mb-3" required>
           <option disabled value="">
@@ -105,9 +110,6 @@ export default function NewRehearsalForm({ rObj, bcId }) {
           </option>
           {sets.map((s) => <option key={s.id} value={s.id} display={s.title}>{s.title}</option>)}
         </Form.Select>
-      </FloatingLabel>
-      <FloatingLabel controlId="floatingInput2" label="message" className="mb-3">
-        <Form.Control type="text" placeholder="message" name="message" value={formInput.message} onChange={handleChange} as="textarea" aria-label="With textarea" required />
       </FloatingLabel>
       <Button className="m-4" type="submit">{rObj.id ? 'update' : 'create'} rehearsal</Button>
     </Form>
@@ -123,8 +125,8 @@ NewRehearsalForm.propTypes = {
     show: PropTypes.string,
     message: PropTypes.string,
     author: PropTypes.number,
-    set: PropTypes.number,
     band: PropTypes.number,
+    set: PropTypes.number,
   }),
   bcId: PropTypes.number,
 };

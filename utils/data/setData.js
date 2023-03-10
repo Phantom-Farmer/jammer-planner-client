@@ -12,10 +12,10 @@ const getSetsByBand = (id) => new Promise((resolve, reject) => {
 const createSet = (setObj) => new Promise((resolve, reject) => {
   const setlistObj = {
     title: setObj.title,
-    song: setObj.song,
     note: setObj.note,
     band: Number(setObj.band),
     author: Number(setObj.author),
+    songs: setObj.songs,
   };
   fetch(`${dbUrl}/set`, {
     method: 'POST',
@@ -33,7 +33,6 @@ const getSingleSet = (id) => new Promise((resolve, reject) => {
       resolve({
         id: data.id,
         title: data.title,
-        song: data.song,
         note: data.note,
         band: data.band,
         author: data.author,
