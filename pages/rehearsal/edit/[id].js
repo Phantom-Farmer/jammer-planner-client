@@ -9,7 +9,7 @@ export default function UpdateRehearsalCard() {
   const { id } = router.query;
 
   useEffect(() => {
-    getSingleRehearsal(id).then(setEditItem);
+    getSingleRehearsal(id).then(setEditItem, () => {});
   }, [id]);
 
   return (<NewRehearsalForm rObj={editItem} />);
