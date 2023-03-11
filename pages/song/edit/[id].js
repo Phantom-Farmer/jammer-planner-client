@@ -15,4 +15,6 @@ export default function UpdateSongCard() {
   if (editItem.id) {
     return (<NewSongForm obj={editItem} />);
   }
+
+  return null;
 }

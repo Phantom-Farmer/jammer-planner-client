@@ -18,7 +18,7 @@ const initialState = {
   message: '',
   band: '',
   author: '',
-  set: '',
+  set: { id: '' },
 };
 
 export default function NewRehearsalForm({ rObj, bcId }) {
@@ -102,7 +102,7 @@ export default function NewRehearsalForm({ rObj, bcId }) {
         <Form.Control type="text" placeholder="MESSAGE" name="message" value={formInput.message} onChange={handleChange} as="textarea" aria-label="With textarea" required />
       </FloatingLabel>
       <FloatingLabel controlId="floatingSelect" label="add set">
-        <Form.Select name="set" value={formInput.set} onChange={handleChange} className="mb-3" required>
+        <Form.Select name="set" value={formInput.set.id} onChange={handleChange} className="mb-3" required>
           <option disabled value="">
             select a set list
           </option>

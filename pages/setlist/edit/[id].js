@@ -15,4 +15,6 @@ export default function UpdateSetCard() {
   if (editItem.id) {
     return (<NewSetForm obj={editItem} />);
   }
+
+  return null;
 }

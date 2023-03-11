@@ -27,7 +27,7 @@ export default function SetCard({ setObj, onUpdate }) {
           <div>
             <h4>- songs: </h4>
           </div>
-          {setObj.songs.length > 0
+          {setObj?.songs?.length > 0
             ? setObj?.songs?.map((song) => {
               console.log(song);
               return (
@@ -37,6 +37,11 @@ export default function SetCard({ setObj, onUpdate }) {
               );
             })
             : ''}
+          <Link href={`/setlist/edit/${setObj.id}`} passHref>
+            <Button className="m-6">
+              edit
+            </Button>
+          </Link>
           <Link href={`/setlist/band/${setObj.band.id}`} passHref>
             <Button onClick={deleteThisSetCard} className="m-5">
               delete
