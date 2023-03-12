@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable no-lone-blocks */
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -11,11 +12,11 @@ import { getSingleBand } from '../utils/data/bandData';
 import { getSongsByBand } from '../utils/data/songData';
 
 const initialState = {
-  id: 0,
+  id: '',
   title: '',
   note: '',
-  band: 0,
-  author: 0,
+  band: '',
+  author: '',
 };
 
 export default function NewSetForm({ obj, bcId }) {
@@ -23,21 +24,24 @@ export default function NewSetForm({ obj, bcId }) {
   const [bandCard, setBandCard] = useState({});
   const [bandNumber, setbandNumber] = useState(null);
   const [songs, setSongs] = useState([]);
-  // const [field, setField] = useState({});
-  // const [songIds, setSongIds] = useState([]);
-  // const [selectedOptions, setSelectedOptions] = useState([]);
-  // const [songName, setSongName] = useState('');
-  // const [selectBars, setSelectBars] = useState([]);
+  const [selectBarData, setSelectBarData] = useState([]);
+  const [chosenSetlistSongIds, setChosenSetlistSongIds] = useState([]);
   const router = useRouter();
-  const selectBarData = Array(5).fill(songs);
-  const arrayOfSongIds = Array(5).fill(null);
 
   const { user } = useAuth();
 
   useEffect(() => {
+    // edit mode
     if (obj.id) {
       setFormInput(obj);
       setbandNumber(obj.band.id);
+      getSongsByBand(obj.band.id).then((bandSongs) => {
+        setSongs(bandSongs);
+      }).then(() => {
+        const existingSetlistSongIds = obj?.songs?.map((s) => s.id);
+        setChosenSetlistSongIds(existingSetlistSongIds);
+      });
+      // create mode
     } else {
       getSingleBand(bcId).then((bc) => {
         setBandCard(bc);
@@ -49,7 +53,8 @@ export default function NewSetForm({ obj, bcId }) {
   }, [obj]);
 
   useEffect(() => {
-  }, [bandNumber, songs]);
+    setSelectBarData(Array(5).fill(songs));
+  }, [songs]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -68,13 +73,16 @@ export default function NewSetForm({ obj, bcId }) {
       author: user.id,
       band: bandNumber,
     };
+    console.warn('ddddddddddddd', chosenSetlistSongIds);
+
+    const songIdsToSend = chosenSetlistSongIds.flter((id) => id !== '');
     if (obj.id) {
+      setObj.songs = songIdsToSend;
       updateSet(setObj, obj.id)
         .then(() => router.push(`/setlist/band/${bandNumber}`));
     } else {
-      console.log("we're posting a setisst");
       const payload = {
-        author: bandCard.author.id, band: bandCard.id, note: formInput.note, title: formInput.title, songs: arrayOfSongIds,
+        author: bandCard.author.id, band: bandCard.id, note: formInput.note, title: formInput.title, songs: chosenSetlistSongIds,
       };
       createSet(payload).then(() => {
         router.push(`/setlist/band/${bandCard.id}`);
@@ -94,22 +102,19 @@ export default function NewSetForm({ obj, bcId }) {
           <Form.Control type="text" placeholder="NOTE" name="note" value={formInput.note} onChange={handleChange} as="textarea" aria-label="With textarea" required />
         </FloatingLabel>
         <div>
-          {/* map over the array of song arrays, keeping track of the index position
-        of the select bar we're creating each time
-        */}
           {selectBarData.map((sbd, index) => {
-            { /* map over the array of song arrays, keeping track of the index position
-        of the select bar we're creating each time
-        */ }
+            const initialValue = chosenSetlistSongIds?.length ? chosenSetlistSongIds[index] : '';
             const changeHandler = (e) => {
-              arrayOfSongIds[index] = parseInt(e.target.value, 10);
-              console.log(arrayOfSongIds);
+              const copyOfChosenSetlistSongIds = chosenSetlistSongIds.slice();
+              copyOfChosenSetlistSongIds[index] = e.target.value;
+              setChosenSetlistSongIds(copyOfChosenSetlistSongIds);
             };
+
             return (
-              <select onChange={changeHandler}>
+              <select onChange={changeHandler} value={initialValue}>
                 <option value="">Choose a song</option>
-                {sbd.map((sbo) => (
-                  <option value={sbo.id}>{sbo.title}</option>
+                {sbd.map((sbObj) => (
+                  <option value={sbObj.id}>{sbObj.title}</option>
                 ))}
               </select>
             );
@@ -128,6 +133,7 @@ NewSetForm.propTypes = {
     note: PropTypes.string,
     author: PropTypes.number,
     band: PropTypes.number,
+    songs: PropTypes.array,
   }),
   bcId: PropTypes.string,
 };
