@@ -37,7 +37,7 @@ const createSetSong = (setSong) => new Promise((resolve, reject) => {
 const updateSetSong = (sObj, id) => new Promise((resolve, reject) => {
   const setSongObj = {
     set: Number(sObj.set),
-    song: Number(sObj.song),
+    song: Number(sObj.songs),
     order: Number(sObj.order),
   };
   fetch(`${dbUrl}/setSong/${id}`, {

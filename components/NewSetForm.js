@@ -39,6 +39,7 @@ export default function NewSetForm({ obj, bcId }) {
         setSongs(bandSongs);
       }).then(() => {
         const existingSetlistSongIds = obj?.songs?.map((s) => s.id);
+        console.warn(obj.songs);
         setChosenSetlistSongIds(existingSetlistSongIds);
       });
       // create mode
@@ -51,6 +52,8 @@ export default function NewSetForm({ obj, bcId }) {
       });
     }
   }, [obj]);
+
+  console.warn(obj);
 
   useEffect(() => {
     setSelectBarData(Array(5).fill(songs));
@@ -75,7 +78,7 @@ export default function NewSetForm({ obj, bcId }) {
     };
     console.warn('ddddddddddddd', chosenSetlistSongIds);
 
-    const songIdsToSend = chosenSetlistSongIds.flter((id) => id !== '');
+    const songIdsToSend = chosenSetlistSongIds?.filter((id) => id !== '');
     if (obj.id) {
       setObj.songs = songIdsToSend;
       updateSet(setObj, obj.id)

@@ -36,6 +36,7 @@ const getSingleSet = (id) => new Promise((resolve, reject) => {
         note: data.note,
         band: data.band,
         author: data.author,
+        songs: data.songs,
 
       });
     })
@@ -53,7 +54,7 @@ const deleteSingleSet = (id) => new Promise((resolve, reject) => {
 const updateSet = (setObj, id) => new Promise((resolve, reject) => {
   const setlistObj = {
     title: setObj.title,
-    songs: setObj.song,
+    songs: setObj.songs,
     note: setObj.note,
     band: Number(setObj.band),
     author: Number(setObj.author),
