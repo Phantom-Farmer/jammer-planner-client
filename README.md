@@ -1,44 +1,69 @@
-# React/Next.js Django Auth Template
+# Jammer Planner - client side
 
-## Topics
-- [Get Started](#getting-started)
-- [Starting the Project](#starting-the-project)
-___
-## Getting Started
-### Use Template
-#### 1. To get started, click the GREEN "Use this Template" button at the top of the repo
-<img width="915" alt="Screen Shot 2022-07-06 at 12 54 01 PM" src="https://user-images.githubusercontent.com/29741570/177612998-4aac9237-5a1e-4f13-8ae0-468587521564.png">
-
-#### 2. Make sure YOUR github account is selected in the dropdown and name your project
-<img width="763" alt="Screen Shot 2022-07-06 at 12 54 48 PM" src="https://user-images.githubusercontent.com/29741570/177613126-dd38f678-7553-4f27-8a4a-75680f14d71e.png">
-
-#### 3. Clone your new repo to your local machine
-#### 4. Go to the **NEXT** section
-
-## Starting the Project
-1. Create a Firebase project and set up authentication. Use [these videos](https://vimeo.com/showcase/codetracker-firebase) as a refresher if needed.
-1. Create a `.env` file at the root of the project
-1. Copy/Paste the contents of the `.env.sample` file to your newly created `.env` file.
-1. Copy over all of your Firebase values into the `.env` file.
-1. Open the `package.json` file and change the `name` property to the name of your application, and `author` to  your name.
-1. From your command line, be in the root directory and run `npm install` OR `npm i` for short.
-1. Next, run `npm run prepare`. This command sets up husky to track eslint errors on commit that will make your deploy fail on Netlify.
-1. To start your application, run `npm run dev`. THIS IS THE COMMAND YOU WILL USE TO RUN YOUR DEVELOPMENT SERVER FROM NOW ON.
-1. Open [http://localhost:3000](http://localhost:3000) with your browser.
-
-### If you see this, you are set to go!
-<img width="450" alt="Screen Shot 2022-07-06 at 1 07 27 PM" src="https://user-images.githubusercontent.com/29741570/177615077-9b6a75bc-0260-4d29-bb88-bd95a3140687.png">
+Jammer Planner is an app for songwriters and band leaders. It provides tools for organizing songs and set lists as well as scheduling rehearsals.
 
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Features
 
-**NOTES:** 
-- If you see the following error, you did not follow all the setup steps correctly and failed to add your Firebase creds. Go back and do that NOW.
+Jammer Planner's front end application was made using React/Next.js. Firebase is used for authentication through Google. The server side application was built with Python/Django and can be found here: https://github.com/Phantom-Farmer/jammer-planner-server 
 
-<img width="1043" alt="Screen Shot 2022-07-06 at 11 18 45 AM" src="https://user-images.githubusercontent.com/29741570/177612501-c2628f18-4bbd-4de9-aae6-27ffba1172d6.png">
-        
-## Learn More about Next.js
-To learn more about Next.js, take a look at the following resources:
+- Create a band or music project, or as many as you want
+- Document your songs, and then edit them
+- Choose from your songs, per band, and make them into a set list that can be edited, easily changing the song order
+- Schedule rehearsals and attach the set list of your choice to any rehearsal
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Screenshots
+
+![image](https://user-images.githubusercontent.com/100452931/227074489-1f8c8da3-b763-41de-8889-fd2582d179a3.png)
+
+![image](https://user-images.githubusercontent.com/100452931/227075315-09652a06-9f7d-47bb-a91c-4e7eb33b93e6.png)
+
+![image](https://user-images.githubusercontent.com/100452931/227075441-608f0026-2eba-46ca-8b36-b812cdce301c.png)
+
+
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone git@github.com:Phantom-Farmer/jammer-planner-server.git
+```
+
+Go to the project directory
+
+```bash
+  cd jammer-planner-client
+```
+
+Install dependencies in the root directory
+
+```bash
+  npm install
+```
+```bash
+  npm run prepare
+```
+Create an env file and copy over the required variables
+
+```bash
+NEXT_PUBLIC_FIREBASE_API_KEY=""
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=""
+NEXT_PUBLIC_DATABASE_URL=http://localhost:8000 
+```
+
+Start the server
+
+```bash
+  npm run dev
+```
+
+
+## ERD
+
+https://dbdiagram.io/d/63de8416296d97641d7e71cf
+
+## Wireframe & Flow chart
+
+https://www.figma.com/file/G1AcXOOJIukzpR7gADPS5V/jammer-planner?node-id=0-1&t=UtiHd4xz7dfUdFz4-0
